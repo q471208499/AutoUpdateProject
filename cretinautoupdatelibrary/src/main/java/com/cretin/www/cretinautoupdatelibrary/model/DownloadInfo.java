@@ -20,6 +20,7 @@ public class DownloadInfo implements Parcelable {
     private String prodVersionName;
     //更新日志
     private String updateLog;
+    private String updateLogEn;//英文更新日志
     //是否强制更新 0 不强制更新 1 hasAffectCodes拥有字段强制更新 2 所有版本强制更新
     private int forceUpdateFlag;
     //受影响的版本号 如果开启强制更新 那么这个字段包含的所有版本都会被强制更新 格式 2|3|4
@@ -64,6 +65,15 @@ public class DownloadInfo implements Parcelable {
 
     public DownloadInfo setUpdateLog(String updateLog) {
         this.updateLog = updateLog;
+        return this;
+    }
+
+    public String getUpdateLogEn() {
+        return updateLogEn;
+    }
+
+    public DownloadInfo setUpdateLogEn(String updateLogEn) {
+        this.updateLogEn = updateLogEn;
         return this;
     }
 
@@ -116,6 +126,7 @@ public class DownloadInfo implements Parcelable {
         dest.writeInt(this.prodVersionCode);
         dest.writeString(this.prodVersionName);
         dest.writeString(this.updateLog);
+        dest.writeString(this.updateLogEn);
         dest.writeInt(this.forceUpdateFlag);
         dest.writeString(this.hasAffectCodes);
         dest.writeString(this.md5Check);
@@ -130,6 +141,7 @@ public class DownloadInfo implements Parcelable {
         this.prodVersionCode = in.readInt();
         this.prodVersionName = in.readString();
         this.updateLog = in.readString();
+        this.updateLogEn = in.readString();
         this.forceUpdateFlag = in.readInt();
         this.hasAffectCodes = in.readString();
         this.md5Check = in.readString();

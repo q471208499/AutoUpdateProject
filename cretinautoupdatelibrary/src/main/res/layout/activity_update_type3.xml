@@ -11,6 +11,7 @@
         android:layout_weight="1">
 
         <LinearLayout
+            android:id="@+id/bg_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@mipmap/dialog_bg_type_3"
@@ -24,15 +25,15 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_gravity="bottom"
                     android:id="@+id/tv_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
                     android:layout_marginLeft="60dp"
                     android:layout_marginRight="60dp"
-                    android:maxHeight="120dp"
                     android:gravity="center_vertical"
                     android:lineSpacingExtra="2dp"
+                    android:maxHeight="120dp"
                     android:scrollbars="vertical"
                     android:singleLine="false"
                     android:textColor="#4b4b4b"

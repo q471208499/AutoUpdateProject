@@ -1,7 +1,6 @@
 package com.cretin.www.cretinautoupdatelibrary.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.WindowManager;
@@ -38,7 +37,7 @@ public class UpdateBackgroundActivity extends RootActivity {
      * @param info
      */
     public static void launch(Context context, DownloadInfo info) {
-        launchActivity(context, info, UpdateBackgroundActivity.class);
+        launchActivity(context, info, UpdateBackgroundActivity.class, true);
     }
 
 }

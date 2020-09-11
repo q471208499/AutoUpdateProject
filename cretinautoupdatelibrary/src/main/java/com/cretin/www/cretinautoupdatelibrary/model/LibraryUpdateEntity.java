@@ -20,6 +20,8 @@ public interface LibraryUpdateEntity {
     //更新日志
     String getAppUpdateLog();
 
+    String getAppUpdateLogEn();
+
     //安装包大小 单位字节
     String getAppApkSize();
 

@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AutoUpdateProject.iml" filepath="$PROJECT_DIR$/AutoUpdateProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AutoUpdateProject-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AutoUpdateProject-app.iml" group="AutoUpdateProject/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cretinautoupdatelibrary/AutoUpdateProject-cretinautoupdatelibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/cretinautoupdatelibrary/AutoUpdateProject-cretinautoupdatelibrary.iml" group="AutoUpdateProject/cretinautoupdatelibrary" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/cretinautoupdatelibrary/cretinautoupdatelibrary.iml" filepath="$PROJECT_DIR$/cretinautoupdatelibrary/cretinautoupdatelibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/workspace-android-AutoUpdateProject.iml" filepath="$PROJECT_DIR$/.idea/modules/workspace-android-AutoUpdateProject.iml" group="AutoUpdateProject" />
     </modules>
   </component>
 </project>

@@ -41,6 +41,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import static com.cretin.www.cretinautoupdatelibrary.utils.AppUtils.getAppLocalPath;
 
@@ -246,30 +247,33 @@ public class AppUpdateUtils {
         //如果用户开启了静默下载 就不需要展示更新页面了
         if (!updateConfig.isAutoDownloadBackground()) {
             //根据类型选择对应的样式
+            boolean defaultLocale = Locale.SIMPLIFIED_CHINESE.getLanguage().equals(Locale.getDefault().getLanguage());
             if (type == TypeConfig.UI_THEME_A) {
-                UpdateType1Activity.launch(mContext, info);
+                UpdateType1Activity.launch(mContext, info, defaultLocale);
             } else if (type == TypeConfig.UI_THEME_B) {
-                UpdateType2Activity.launch(mContext, info);
+                UpdateType2Activity.launch(mContext, info, defaultLocale);
             } else if (type == TypeConfig.UI_THEME_C) {
-                UpdateType3Activity.launch(mContext, info);
+                UpdateType3Activity.launch(mContext, info, defaultLocale);
             } else if (type == TypeConfig.UI_THEME_D) {
-                UpdateType4Activity.launch(mContext, info);
+                UpdateType4Activity.launch(mContext, info, defaultLocale);
             } else if (type == TypeConfig.UI_THEME_E) {
-                UpdateType5Activity.launch(mContext, info);
+                UpdateType5Activity.launch(mContext, info, defaultLocale);
             } else if (type == TypeConfig.UI_THEME_F) {
-                UpdateType6Activity.launch(mContext, info);
+                UpdateType6Activity.launch(mContext, info, defaultLocale);
             } else if (type == TypeConfig.UI_THEME_G) {
-                UpdateType7Activity.launch(mContext, info);
+                UpdateType7Activity.launch(mContext, info, defaultLocale);
             } else if (type == TypeConfig.UI_THEME_H) {
-                UpdateType8Activity.launch(mContext, info);
+                UpdateType8Activity.launch(mContext, info, defaultLocale);
             } else if (type == TypeConfig.UI_THEME_I) {
-                UpdateType9Activity.launch(mContext, info);
+                UpdateType9Activity.launch(mContext, info, defaultLocale);
             } else if (type == TypeConfig.UI_THEME_J) {
-                UpdateType10Activity.launch(mContext, info);
+                UpdateType10Activity.launch(mContext, info, defaultLocale);
             } else if (type == TypeConfig.UI_THEME_K) {
-                UpdateType11Activity.launch(mContext, info);
+                UpdateType11Activity.launch(mContext, info, defaultLocale);
             } else if (type == TypeConfig.UI_THEME_L) {
-                UpdateType12Activity.launch(mContext, info);
+                UpdateType12Activity.launch(mContext, info, defaultLocale);
+            } else {
+                UpdateType10Activity.launch(mContext, info, defaultLocale);
             }
         } else {
             //直接下载
@@ -558,6 +562,7 @@ public class AppUpdateUtils {
                     .setApkUrl(libraryUpdateEntity.getAppApkUrls())
                     .setHasAffectCodes(libraryUpdateEntity.getAppHasAffectCodes())
                     .setMd5Check(libraryUpdateEntity.getFileMd5Check())
+                    .setUpdateLogEn(libraryUpdateEntity.getAppUpdateLogEn())
                     .setUpdateLog(libraryUpdateEntity.getAppUpdateLog()));
         }
     }

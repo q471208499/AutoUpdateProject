@@ -16,17 +16,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import com.cretin.www.cretinautoupdatelibrary.R;
-import com.cretin.www.cretinautoupdatelibrary.activity.UpdateType1Activity;
 import com.cretin.www.cretinautoupdatelibrary.interfaces.AppDownloadListener;
 import com.cretin.www.cretinautoupdatelibrary.interfaces.AppUpdateInfoListener;
 import com.cretin.www.cretinautoupdatelibrary.interfaces.MD5CheckListener;
 import com.cretin.www.cretinautoupdatelibrary.interfaces.OnDialogClickListener;
 import com.cretin.www.cretinautoupdatelibrary.model.DownloadInfo;
 import com.cretin.www.cretinautoupdatelibrary.service.UpdateService;
-import com.cretin.www.cretinautoupdatelibrary.utils.AppUpdateUtils;
-import com.cretin.www.cretinautoupdatelibrary.utils.AppUtils;
-import com.cretin.www.cretinautoupdatelibrary.utils.NetWorkUtils;
-import com.cretin.www.cretinautoupdatelibrary.utils.ResUtils;
 
 /**
  * @date: on 2019-10-11
@@ -38,6 +33,7 @@ public abstract class RootActivity extends AppCompatActivity {
 
     public static final String permission = Manifest.permission.WRITE_EXTERNAL_STORAGE;
     private static final int PERMISSION_CODE = 1001;
+    protected static boolean mDefaultLocale;
 
     public DownloadInfo downloadInfo;
 
@@ -213,11 +209,12 @@ public abstract class RootActivity extends AppCompatActivity {
 
     /**
      * 启动Activity
-     *
-     * @param context
+     *  @param context
      * @param info
+     * @param defaultLocale
      */
-    public static void launchActivity(Context context, DownloadInfo info, Class cla) {
+    public static void launchActivity(Context context, DownloadInfo info, Class cla, boolean defaultLocale) {
+        mDefaultLocale = defaultLocale;
         Intent intent = new Intent(context, cla);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP + Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.putExtra("info", info);

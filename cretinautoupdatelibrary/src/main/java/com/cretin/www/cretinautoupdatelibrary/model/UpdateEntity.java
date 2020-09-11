@@ -4,7 +4,7 @@ package com.cretin.www.cretinautoupdatelibrary.model;
  * Created by cretin on 2017/3/8.
  */
 @Deprecated
-public class UpdateEntity implements LibraryUpdateEntity{
+public class UpdateEntity implements LibraryUpdateEntity {
     public int versionCode = 0;
     //是否强制更新 0 不强制更新 1 hasAffectCodes拥有字段强制更新 2 所有版本强制更新
     public int isForceUpdate = 0;
@@ -16,6 +16,7 @@ public class UpdateEntity implements LibraryUpdateEntity{
     public String downurl = "";
     //更新日志
     public String updateLog = "";
+    public String updateLogEn = "";
     //安装包大小 单位字节
     public String size = "";
     //受影响的版本号 如果开启强制更新 那么这个字段包含的所有版本都会被强制更新 格式 2|3|4
@@ -69,6 +70,14 @@ public class UpdateEntity implements LibraryUpdateEntity{
         this.updateLog = updateLog;
     }
 
+    public String getUpdateLogEn() {
+        return updateLogEn;
+    }
+
+    public void setUpdateLogEn(String updateLogEn) {
+        this.updateLogEn = updateLogEn;
+    }
+
     public String getSize() {
         return size;
     }
@@ -108,6 +117,11 @@ public class UpdateEntity implements LibraryUpdateEntity{
     @Override
     public String getAppUpdateLog() {
         return getUpdateLog();
+    }
+
+    @Override
+    public String getAppUpdateLogEn() {
+        return getUpdateLogEn();
     }
 
     @Override

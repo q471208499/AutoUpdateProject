@@ -1,7 +1,6 @@
 package com.cretin.www.cretinautoupdatelibrary.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
@@ -10,11 +9,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cretin.www.cretinautoupdatelibrary.utils.LogUtils;
 import com.cretin.www.cretinautoupdatelibrary.R;
 import com.cretin.www.cretinautoupdatelibrary.interfaces.AppDownloadListener;
 import com.cretin.www.cretinautoupdatelibrary.model.DownloadInfo;
 import com.cretin.www.cretinautoupdatelibrary.utils.AppUtils;
+import com.cretin.www.cretinautoupdatelibrary.utils.LogUtils;
 import com.cretin.www.cretinautoupdatelibrary.utils.ResUtils;
 import com.cretin.www.cretinautoupdatelibrary.utils.RootActivity;
 
@@ -37,9 +36,10 @@ public class UpdateType11Activity extends RootActivity {
     }
 
     private void setDataAndListener() {
-        tvMsg.setText(downloadInfo.getUpdateLog());
+        String log = mDefaultLocale ? downloadInfo.getUpdateLog() : downloadInfo.getUpdateLogEn();
+        tvMsg.setText(log);
         tvMsg.setMovementMethod(ScrollingMovementMethod.getInstance());
-        tvVersion.setText("v"+downloadInfo.getProdVersionName());
+        tvVersion.setText("v" + downloadInfo.getProdVersionName());
 
         if (downloadInfo.isForceUpdateFlag()) {
             ivClose.setVisibility(View.GONE);
@@ -80,7 +80,7 @@ public class UpdateType11Activity extends RootActivity {
         tvMsg = findViewById(R.id.tv_content);
         tvBtn2 = findViewById(R.id.tv_update);
         ivClose = findViewById(R.id.iv_close);
-        tvBtn1 = (TextView) findViewById(R.id.tv_btn1);
+        tvBtn1 = findViewById(R.id.tv_btn1);
         tvVersion = findViewById(R.id.tv_version);
     }
 
@@ -89,7 +89,7 @@ public class UpdateType11Activity extends RootActivity {
         return new AppDownloadListener() {
             @Override
             public void downloading(int progress) {
-                tvBtn2.setText(ResUtils.getString(R.string.downloading)+progress+"%");
+                tvBtn2.setText(ResUtils.getString(R.string.downloading) + progress + "%");
             }
 
             @Override
@@ -125,9 +125,10 @@ public class UpdateType11Activity extends RootActivity {
      *
      * @param context
      * @param info
+     * @param defaultLocale
      */
-    public static void launch(Context context, DownloadInfo info) {
-        launchActivity(context, info, UpdateType11Activity.class);
+    public static void launch(Context context, DownloadInfo info, boolean defaultLocale) {
+        launchActivity(context, info, UpdateType11Activity.class, defaultLocale);
     }
 
 }

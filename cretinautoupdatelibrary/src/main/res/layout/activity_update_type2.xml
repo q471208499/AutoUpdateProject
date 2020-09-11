@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/bg_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -24,16 +25,16 @@
                 android:layout_weight="1">
 
                 <TextView
+                    android:id="@+id/tv_version"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="28dp"
-                    android:paddingBottom="2dp"
+                    android:paddingLeft="10dp"
                     android:paddingTop="2dp"
                     android:paddingRight="10dp"
-                    android:id="@+id/tv_version"
-                    android:paddingLeft="10dp"
+                    android:paddingBottom="2dp"
                     android:textColor="#ffffff"
                     android:textSize="16sp"
                     android:textStyle="bold" />

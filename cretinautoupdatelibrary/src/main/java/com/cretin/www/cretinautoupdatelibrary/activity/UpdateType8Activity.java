@@ -1,7 +1,6 @@
 package com.cretin.www.cretinautoupdatelibrary.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
@@ -37,7 +36,8 @@ public class UpdateType8Activity extends RootActivity {
     }
 
     private void setDataAndListener() {
-        tvMsg.setText(downloadInfo.getUpdateLog());
+        String log = mDefaultLocale ? downloadInfo.getUpdateLog() : downloadInfo.getUpdateLogEn();
+        tvMsg.setText(log);
         tvMsg.setMovementMethod(ScrollingMovementMethod.getInstance());
         tvVersion.setText("v"+downloadInfo.getProdVersionName());
 
@@ -80,8 +80,11 @@ public class UpdateType8Activity extends RootActivity {
         tvMsg = findViewById(R.id.tv_content);
         tvBtn2 = findViewById(R.id.tv_update);
         ivClose = findViewById(R.id.iv_close);
-        tvBtn1 = (TextView) findViewById(R.id.tv_btn1);
+        tvBtn1 = findViewById(R.id.tv_btn1);
         tvVersion = findViewById(R.id.tv_version);
+        LinearLayout linearLayout = findViewById(R.id.bg_view);
+        int bgRes = mDefaultLocale ? R.mipmap.dialog_bg_type_8 : R.mipmap.dialog_bg_type_8_en;
+        linearLayout.setBackgroundResource(bgRes);
     }
 
     @Override
@@ -122,12 +125,12 @@ public class UpdateType8Activity extends RootActivity {
 
     /**
      * 启动Activity
-     *
-     * @param context
+     *  @param context
      * @param info
+     * @param defaultLocale
      */
-    public static void launch(Context context, DownloadInfo info) {
-        launchActivity(context, info, UpdateType8Activity.class);
+    public static void launch(Context context, DownloadInfo info, boolean defaultLocale) {
+        launchActivity(context, info, UpdateType8Activity.class, defaultLocale);
     }
 
 }

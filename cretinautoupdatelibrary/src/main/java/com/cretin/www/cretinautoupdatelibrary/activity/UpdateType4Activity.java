@@ -1,7 +1,6 @@
 package com.cretin.www.cretinautoupdatelibrary.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
@@ -9,10 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cretin.www.cretinautoupdatelibrary.utils.LogUtils;
 import com.cretin.www.cretinautoupdatelibrary.R;
 import com.cretin.www.cretinautoupdatelibrary.interfaces.AppDownloadListener;
 import com.cretin.www.cretinautoupdatelibrary.model.DownloadInfo;
+import com.cretin.www.cretinautoupdatelibrary.utils.LogUtils;
 import com.cretin.www.cretinautoupdatelibrary.utils.ResUtils;
 import com.cretin.www.cretinautoupdatelibrary.utils.RootActivity;
 
@@ -33,7 +32,8 @@ public class UpdateType4Activity extends RootActivity {
     }
 
     private void setDataAndListener() {
-        tvMsg.setText(downloadInfo.getUpdateLog() + "\nv" + downloadInfo.getProdVersionName());
+        String log = mDefaultLocale ? downloadInfo.getUpdateLog() : downloadInfo.getUpdateLogEn();
+        tvMsg.setText(log + "\nv" + downloadInfo.getProdVersionName());
         tvMsg.setMovementMethod(ScrollingMovementMethod.getInstance());
 
         if (downloadInfo.isForceUpdateFlag()) {
@@ -105,9 +105,10 @@ public class UpdateType4Activity extends RootActivity {
      *
      * @param context
      * @param info
+     * @param defaultLocale
      */
-    public static void launch(Context context, DownloadInfo info) {
-        launchActivity(context, info, UpdateType4Activity.class);
+    public static void launch(Context context, DownloadInfo info, boolean defaultLocale) {
+        launchActivity(context, info, UpdateType4Activity.class, defaultLocale);
     }
 
 }

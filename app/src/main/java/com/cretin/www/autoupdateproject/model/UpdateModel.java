@@ -30,6 +30,7 @@ public class UpdateModel implements LibraryUpdateEntity {
     private int versionCode;
     private String downurl;
     private String updateLog;
+    private String updateLogEn;
     private String size;
     private String hasAffectCodes;
     private long createTime;
@@ -81,6 +82,14 @@ public class UpdateModel implements LibraryUpdateEntity {
 
     public void setUpdateLog(String updateLog) {
         this.updateLog = updateLog;
+    }
+
+    public String getUpdateLogEn() {
+        return updateLogEn;
+    }
+
+    public void setUpdateLogEn(String updateLogEn) {
+        this.updateLogEn = updateLogEn;
     }
 
     public String getSize() {
@@ -138,6 +147,11 @@ public class UpdateModel implements LibraryUpdateEntity {
     @Override
     public String getAppUpdateLog() {
         return getUpdateLog();
+    }
+
+    @Override
+    public String getAppUpdateLogEn() {
+        return getUpdateLogEn();
     }
 
     @Override
