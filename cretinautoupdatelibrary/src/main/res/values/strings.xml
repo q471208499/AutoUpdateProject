@@ -15,4 +15,6 @@
     <string name="installing">安装中...</string>
     <string name="install">安装</string>
     <string name="apk_file_download_fail">安装文件下载失败</string>
+    <string name="permission_to_installs">安装权限</string>
+    <string name="permission_to_installs_msg">需要打开允许来自此来源，请去设置中开启此权限</string>
 </resources>

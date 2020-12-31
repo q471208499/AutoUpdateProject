@@ -15,4 +15,6 @@
     <string name="installing">Installing...</string>
     <string name="install">installation</string>
     <string name="apk_file_download_fail">Installation file download failed</string>
+    <string name="permission_to_installs">Installation permissions</string>
+    <string name="permission_to_installs_msg">Need to enable permission from this source, please go to settings to enable this permission</string>
 </resources>

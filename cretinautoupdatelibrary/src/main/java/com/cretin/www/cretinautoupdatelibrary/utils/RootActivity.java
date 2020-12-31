@@ -1,6 +1,7 @@
 package com.cretin.www.cretinautoupdatelibrary.utils;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -33,6 +34,7 @@ public abstract class RootActivity extends AppCompatActivity {
 
     public static final String permission = Manifest.permission.WRITE_EXTERNAL_STORAGE;
     private static final int PERMISSION_CODE = 1001;
+    private static final int INSTALL_PERMISS_CODE = 1002;
     protected static boolean mDefaultLocale;
 
     public DownloadInfo downloadInfo;
@@ -158,7 +160,23 @@ public abstract class RootActivity extends AppCompatActivity {
      * 获取权限
      */
     public void requestPermission() {
-        if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.M)) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            //先判断是否有安装未知来源应用的权限
+            boolean haveInstallPermission = getPackageManager().canRequestPackageInstalls();
+            if (!haveInstallPermission) {
+                //弹框提示用户手动打开
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(R.string.permission_to_installs);
+                builder.setMessage(R.string.permission_to_installs_msg);
+                builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //此方法需要API>=26才能使用
+                        toInstallPermissionSettingIntent();
+                    }
+                });
+            }
+        } else if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.M)) {
             checkDownload();
         } else {
             //下载权限
@@ -171,6 +189,24 @@ public abstract class RootActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(this, new String[]{permission}, PERMISSION_CODE);
             }
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == INSTALL_PERMISS_CODE) {
+            //Toast.makeText(this,"安装应用",Toast.LENGTH_SHORT).show();
+            requestPermission();
+        }
+    }
+
+    /**
+     * 开启安装未知来源权限
+     */
+    private void toInstallPermissionSettingIntent() {
+        Uri packageURI = Uri.parse("package:" + getPackageName());
+        Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, packageURI);
+        startActivityForResult(intent, INSTALL_PERMISS_CODE);
     }
 
     @Override
@@ -209,7 +245,8 @@ public abstract class RootActivity extends AppCompatActivity {
 
     /**
      * 启动Activity
-     *  @param context
+     *
+     * @param context
      * @param info
      * @param defaultLocale
      */
