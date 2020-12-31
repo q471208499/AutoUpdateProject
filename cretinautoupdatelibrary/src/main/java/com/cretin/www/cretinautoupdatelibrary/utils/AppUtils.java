@@ -9,9 +9,9 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
-import androidx.core.content.FileProvider;
+
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.FileProvider;
 
 import com.cretin.www.cretinautoupdatelibrary.R;
 import com.cretin.www.cretinautoupdatelibrary.interfaces.OnDialogClickListener;
@@ -78,8 +78,9 @@ public class AppUtils {
      */
     public static String getAppRootPath() {
         //构建下载路径
-        String packageName = AppUpdateUtils.getInstance().getContext().getPackageName();
-        return Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + packageName + "/apks";
+        //String packageName = AppUpdateUtils.getInstance().getContext().getPackageName();
+        String cachePath = AppUpdateUtils.getInstance().getContext().getExternalCacheDir().getAbsolutePath();
+        return cachePath + "/apks";
     }
 
     /**
