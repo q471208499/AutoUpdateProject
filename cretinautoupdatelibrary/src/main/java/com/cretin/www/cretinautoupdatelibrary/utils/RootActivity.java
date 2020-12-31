@@ -10,11 +10,12 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.cretin.www.cretinautoupdatelibrary.R;
 import com.cretin.www.cretinautoupdatelibrary.interfaces.AppDownloadListener;
@@ -176,7 +177,8 @@ public abstract class RootActivity extends AppCompatActivity {
                     }
                 });
             }
-        } else if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.M)) {
+        }
+        if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.M)) {
             checkDownload();
         } else {
             //下载权限
